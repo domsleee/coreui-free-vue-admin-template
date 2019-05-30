@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -ex
 echo "DEPLOYING"
 npm run build
 if [[ -d '/tmp/dist' ]]; then rm -r /tmp/dist; fi
