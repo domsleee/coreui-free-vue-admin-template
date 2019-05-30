@@ -1,13 +1,13 @@
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: true,
+  productionSourceMap: false,
   configureWebpack: {
     output: {
       filename: '[name].js',
       chunkFilename: '[name].js'
     }
   },
-  productionSourceMap: false,
   chainWebpack: config => {
     /*config.optimization.delete('splitChunks');
     config.plugins.delete('NamedChunksPlugin');
