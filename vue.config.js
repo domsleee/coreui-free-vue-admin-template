@@ -24,6 +24,6 @@ module.exports = {
     
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? 'https://raw.githubusercontent.com/domsleee/coreui-free-vue-admin-template/gh-pages/'
+    ? 'coreui-free-vue-admin-template/'
     : '/',
 }
