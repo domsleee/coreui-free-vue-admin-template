@@ -87,7 +87,7 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: nav.items()
     }
   },
   computed: {

@@ -1,23 +1,23 @@
 export default {
-  items: [
-    {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'primary',
-      }
-    },
-    {
-      name: 'Details',
-      icon: 'icon-cursor'
-    },
-  ],
-  mount() {
+  items: () => {
+    let it = [
+      {
+        name: 'Dashboard',
+        url: '/dashboard',
+        icon: 'icon-speedometer',
+        badge: {
+          variant: 'primary',
+        }
+      },
+      {
+        name: 'Details',
+        icon: 'icon-cursor'
+      },
+    ];
     console.log('hi');
     console.log(process.env);
-    if (process.env != 0) {
-      this.items.concat(
+    if (process.env.NODE_ENV !== 'production' ) {
+      it = it.concat(
         [
           {
             name: 'old fellas(hide later)',
@@ -300,6 +300,6 @@ export default {
         ]
       )
     }
-    
+    return it;
   }
 }
