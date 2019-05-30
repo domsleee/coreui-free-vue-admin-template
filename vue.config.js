@@ -24,6 +24,6 @@ module.exports = {
     
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/coreui-free-vue-admin-template/dist/'
+    ? '/coreui-free-vue-admin-template/'
     : '/',
 }
