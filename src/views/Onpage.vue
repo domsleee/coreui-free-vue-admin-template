@@ -10,13 +10,21 @@
 
 
 
+
+
 import TopDash from './dashboard/mycode/TopDash'
+
 
 export default {
   name: 'dashboard',
   components: {
     TopDash
     
+  },
+  onMount: function() {
+    window.addEventListener("message", function(event) {
+      alert( "received: " + event.data );
+    });
   },
   data: function () {
     return {};
