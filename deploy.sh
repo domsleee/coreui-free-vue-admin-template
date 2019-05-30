@@ -5,6 +5,6 @@ git checkout gh-pages
 npm run build
 cp -r dist/* ./
 git add .
-gc -m "UPDATE"
+git commit -m "UPDATE"
 git push origin HEAD
 git checkout master
