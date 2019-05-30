@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+URL="https://domsleee.github.io/coreui-free-vue-admin-template/#/dashboard"
 set -ex
 echo "DEPLOYING"
 npm run build
@@ -11,3 +12,5 @@ git add .
 git commit -m "UPDATE"
 git push origin HEAD
 git checkout master
+
+echo "Deployed at ${URL}"
