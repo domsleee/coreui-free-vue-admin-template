@@ -13,15 +13,6 @@ module.exports = {
     config.plugins.delete('NamedChunksPlugin');
     config.plugins.delete('HashedModuleIdsPlugin');
     console.log(config);
-
-    if(config.plugins.has('extract-css')) {
-      const extractCSSPlugin = config.plugin('extract-css')
-      extractCSSPlugin && extractCSSPlugin.tap(() => [{
-        filename: '[name].css',
-        chunkFilename: '[name].css'
-      }])
-    }
-    
   },
   publicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
   baseUrl: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
