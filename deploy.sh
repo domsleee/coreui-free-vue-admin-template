@@ -2,6 +2,7 @@
 
 echo "DEPLOYING"
 npm run build
+if [[ -d '/tmp/dist' ]]; then rm -r /tmp/dist; fi
 cp -r dist /tmp/dist
 
 git checkout gh-pages
