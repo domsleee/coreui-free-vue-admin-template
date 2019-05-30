@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 echo "DEPLOYING"
-git checkout gh-pages
 npm run build
+
+git checkout gh-pages
 cp -r dist/* ./
 git add .
 git commit -m "UPDATE"
