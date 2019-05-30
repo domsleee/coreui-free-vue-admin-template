@@ -24,7 +24,6 @@ module.exports = {
     
   },
   publicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
-  build: {
-    assetsPublicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
-  }
+  baseUrl: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
+
 }
