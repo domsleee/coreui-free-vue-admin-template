@@ -9,12 +9,11 @@ module.exports = {
   },
   productionSourceMap: false,
   chainWebpack: config => {
-    config.optimization.delete('splitChunks');
+    /*config.optimization.delete('splitChunks');
     config.plugins.delete('NamedChunksPlugin');
     config.plugins.delete('HashedModuleIdsPlugin');
-    console.log(config);
+    console.log(config);*/
   },
   publicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
-  baseUrl: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
 
 }
