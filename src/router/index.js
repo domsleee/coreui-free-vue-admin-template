@@ -3,9 +3,11 @@ import Router from 'vue-router'
 
 // Containers
 const DefaultContainer = () => import('@/containers/DefaultContainer')
+const EmptyContainer = () => import('@/containers/EmptyContainer')
 
 // Views
 const Dashboard = () => import('@/views/Dashboard')
+const Onpage = () => import('@/views/Onpage')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -65,6 +67,17 @@ export default new Router({
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
+    {
+      path: '/onpage',
+      name: 'small-iframe',
+      component: EmptyContainer,
+      children: [
+        {
+          path: '/onpage',
+          component: Onpage
+        }
+      ]
+    },
     {
       path: '/',
       redirect: '/dashboard',
