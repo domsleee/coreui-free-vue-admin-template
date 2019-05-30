@@ -23,4 +23,8 @@ export default {
   @import '~bootstrap-vue/dist/bootstrap-vue.css';
   // Import Main styles for this application
   @import 'assets/scss/style';
+
+  .progress-bar-striped {
+    background-repeat: repeat-x!important;
+  }
 </style>
