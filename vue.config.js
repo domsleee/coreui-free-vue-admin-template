@@ -23,7 +23,14 @@ module.exports = {
     }
     
   },
+<<<<<<< Updated upstream
   publicPath: process.env.NODE_ENV === 'production'
     ? 'coreui-free-vue-admin-template/'
     : '/',
+=======
+  publicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
+  build: {
+    assetsPublicPath: process.env.NODE_ENV === 'production' ? '/coreui-free-vue-admin-template/' : '/',
+  }
+>>>>>>> Stashed changes
 }
