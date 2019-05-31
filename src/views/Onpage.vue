@@ -10,8 +10,6 @@
 
 
 
-
-
 import TopDash from './dashboard/mycode/TopDash'
 
 
@@ -23,7 +21,12 @@ export default {
   },
   onMount: function() {
     window.addEventListener("message", function(event) {
-      alert( "received: " + event.data );
+      if (event.origin != 'https://www.dailytelegraph.com.au') {
+          // something from an unknown domain, let's ignore it
+          return;
+      }
+      // disable for now 
+      //document.body.innerHTML = ":)";
     });
   },
   data: function () {
