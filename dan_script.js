@@ -94,6 +94,11 @@ function createElements() {
 	divEl.appendChild( articlesSharedPEl );
 	divEl.appendChild( creditsPEl );
 	bodyEl.appendChild( divEl );
+
+    for (let v of [articleCountPEl, creditsPEl, articlesSharedPEl] ) {
+        console.log(v);
+        v.style = 'display:inline-block';
+    }
 }
 
 function styleElements() {
@@ -101,17 +106,22 @@ function styleElements() {
 		articleCountPEl = document.getElementsByClassName( 'devfoundry-article-count-p' )[0],
 		creditsPEl = document.getElementsByClassName( 'devfoundry-credits-p' )[0];
 
-	divEl.style.backgroundColor = 'grey';
-	divEl.style.height = '200px';
-	divEl.style.padding = '30px 30px';
+	divEl.style.backgroundColor = 'white';
+	divEl.style.height = '60px';
+	divEl.style.padding = '';
 	divEl.style.zIndex = '99999999';
+
 	divEl.style.position = 'fixed';
 	divEl.style.width = '100%';
 	divEl.style.bottom = '0px';
+    //divEl.style.paddingRight = '50px';
 	articleCountPEl.style.fontSize = '16px';
 	articleCountPEl.style.color = 'black';
+    articleCountPEl.style.padding = '0 20px 0 10px';
 	creditsPEl.style.fontSize = '24px';
-	creditsPEl.style.color = 'white';
+	creditsPEl.style.color = 'grey';
+    creditsPEl.style.float = 'right';
+    creditsPEl.style.padding = '0 10px 0 0';
 }
 
 function refreshCreditsElement() {
@@ -174,9 +184,14 @@ function clickListener ( event ) {
 }
 
 function replaceAccountLogin() {
+    let els = document.getElementsByClassName('tge-dropdownmenu-menu_link');
+    if (els.length > 0) {
+        els[0].href = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/dashboard';
+    }
+    return;
 	let elem = jQuery("[data-tgev-label=my-account]");
 	if (elem) {
-		elem.attr('href', 'my-profile');
+		elem.attr('href', );
 	}
 }
 
@@ -202,25 +217,51 @@ function init() {
     addFrame();
 }
 
+const BOTTOM_VAL = '60px';
+
 function addFrame() {
     let iframe = document.createElement('iframe');
     iframe.src = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/onpage';
     iframe.name = 'itsyaboi';
     iframe.id = 'itsyaboi';
     iframe.scrolling = 'no';
-    iframe.style = `
+    /*iframe.style = `
     position: fixed;
     z-index: 100;
     width: 100%;
     height: 230px;
-    bottom: 200px;
+    bottom: ${BOTTOM_VAL};
     border: 0;
-    overflow: hidden;`
+    overflow: hidden;`*/
+    iframe.style = 'width: 100%; height:100%; border: 0';
     iframe.sandbox ="allow-same-origin allow-scripts allow-popups allow-forms";
 
 
-    document.body.appendChild(iframe);
+    //document.body.appendChild(iframe);
     waitForMyBoi(iframe);
+
+
+    // add a nice button to toggle it
+    let div = document.createElement('div');
+    div.id = 'boi_dropdown';
+    div.style = 'bottom:60px; height:230px; width:100%; position: fixed; z-index: 500';
+    if (document.getElementById('boi_dropdown')) {
+      return;
+    }
+    div.append(iframe);
+
+    let button = document.createElement('button');
+    button.style = 'position:absolute; right:10px; width: 20px';
+    div.appendChild(button);
+    button.onclick = () => {
+        if (div.style.bottom == BOTTOM_VAL) {
+            div.style.bottom = '-160px';
+        } else {
+            div.style.bottom = BOTTOM_VAL
+        }
+    }
+
+    document.body.appendChild(div);
 }
 
 // non-blocking
