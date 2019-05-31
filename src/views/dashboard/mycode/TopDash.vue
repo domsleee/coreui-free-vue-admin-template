@@ -1,44 +1,93 @@
 <template>
   <div>
-
-    <div class="oneline">
-      <div class="oneline 1">
-        <div class="oneline 2">
-          <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' width=100 />
-
-        </div>
-
-      </div>
-      <div style="width: 300px">
-        <div>
-          <div>
-            <b-progress :value="30" :max="100" show-progress animated></b-progress>
-            <small class="text-muted">Complete to get 100 credits.</small>
+    <b-container>
+      <b-row>
+        <b-col sm="6">
+          <b-row>
+            <b-col width='100px'>
+              <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' fluid />
+            </b-col>
+            <b-col style='font-size: 1.3em'>
+              <h3>
+              Dan Louw<br />
+              Credits: 5<br />
+              Articles: 12<br />
+              Shared: 12<br />
+              Comments: 15<br />
+              </h3>
+            </b-col>
+          </b-row>
+          <b-row>
+            <v-flex>
+              <br />
+              <div fluid>
+                Profile competion
+                <b-progress :value="30" :max="100" show-progress animated></b-progress>
+                <small class="text-muted">Complete to get 100 credits.</small>
+              </div>
+            </v-flex>
+          </b-row>
+        </b-col>
+        <b-col sm="3">
+          <b-row>
+            <b-col>
+              <div>
+                <v-progress-circular
+                        :rotate="-90"
+                        :size="150"
+                        :width="8"
+                        :value=profileProgress
+                        color="green"
+                >
+                  Daily Reads
+                  5/6
+                </v-progress-circular>
+                
+              </div>
+            </b-col>
+            <b-col>
+              <div>
+                <v-progress-circular
+                        :rotate="-90"
+                        :size="150"
+                        :width="8"
+                        :value=profileProgress
+                        color="green"
+                >
+                  Weekly Reads
+                  5/40
+                </v-progress-circular>
+                
+              </div>
+            </b-col>
+          </b-row>
+          <b-row fluid>
+            HI
+            
+          </b-row>
+          <b-row> Streak2</b-row>
+        </b-col>
+        <b-col sm="3">
+          <div class="oneline" style="float: right; width: 150px;" fluid>
+            <div>
+              <v-progress-circular
+                      :rotate="-90"
+                      :size="150"
+                      :width="15"
+                      :value=profileProgress
+                      color="blue"
+              >
+                <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
+              </v-progress-circular>
+              
+              <p class="badge-name-dash"> (TOP READER)</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
 
-    <div class="oneline" style="float: right; width: 150px;">
-      <div>
-
-
-        <v-progress-circular
-                :rotate="-90"
-                :size="150"
-                :width="15"
-                :value=profileProgress
-                color="blue"
-        >
-          <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
-        </v-progress-circular>
-        
-        <p class="badge-name-dash"> (TOP READER)</p>
-      </div>
-    </div>
-
-
-
+    
 
   </div>
 </template>
