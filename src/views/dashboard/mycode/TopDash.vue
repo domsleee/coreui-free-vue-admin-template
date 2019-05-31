@@ -5,15 +5,9 @@
       <div class="oneline 1">
         <div class="oneline 2">
           <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' width=100 />
+
         </div>
-        <div class="oneline 3">
-          <p>
-            Name: Dan<br />
-            Articles: 5<br />
-            Credits: 200<br />
-            Badges: 5<br />
-          </p>
-        </div>
+
       </div>
       <div style="width: 300px">
         <div>

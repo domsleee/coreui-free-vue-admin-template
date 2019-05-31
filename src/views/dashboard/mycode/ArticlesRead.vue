@@ -37,3 +37,12 @@ export default {
   }
 }
 </script>
+
+<style>
+	.oneline {
+		width: 100px;
+		height: 100px;
+		display: inline-block;
+		margin-right: 30px;
+	}
+</style>
