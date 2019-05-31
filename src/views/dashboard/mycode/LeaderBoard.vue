@@ -1,96 +1,43 @@
 <template>
-  <div class="animated fadeIn">
-    <b-row>
-      <b-col md="12">
-        <b-card>
-          <TopDash />
-        </b-card>
-      </b-col>
-      
-    </b-row>
-    <b-row>
-      <b-col md="12">
-        <b-card header="Badges">
-          <BadgesDash />
-        </b-card>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col md="12">
-        <b-card-group columns class="card-columns">
-          <b-card :no-body="true">
-            <Credits />
-          </b-card>
-          <b-card>
-            <Streak />
-          </b-card>
-          <b-card header="Articles Read">
-            <ArticlesRead />
-          </b-card>
-          <b-card header="Profile Complete">
-            <ProfileComplete />
-          </b-card>
-          
-
-          
-        </b-card-group>
-      </b-col>
-    </b-row>
-
-    <b-row>
-      <b-col md="12">
-        <b-card header="Leaderboard">
-          <LeaderBoard />
-        </b-card>
-      </b-col>
-    </b-row>
-  </div>
+  <b-table class="mb-0 table-outline" responsive="sm" hover :items="tableItems" :fields="tableFields" head-variant="light">
+    <div slot="avatar" class="avatar" slot-scope="item">
+      <img :src="item.value.url" class="img-avatar" alt="">
+      <span class="avatar-status" v-bind:class="{ 'bg-success': item.value.status == 'success',  'bg-warning': item.value.status == 'warning', 'bg-danger': item.value.status == 'danger', 'bg-secondary': item.value.status == '' }"></span>
+    </div>
+    <div slot="user" slot-scope="item">
+      <div>{{item.value.name}}</div>
+      <div class="small text-muted">
+                <span>
+                  <template v-if="item.value.new">New</template>
+                  <template v-else>Recurring</template>
+                </span> | Registered: {{item.value.registered}}
+      </div>
+    </div>
+    <i slot="country" class="h4 mb-0" :class="flag(item.value.flag)" slot-scope="item" :title="item.value.flag" :id="item.value.flag"></i>
+    <i class="flag-icon flag-icon-pw h1" title="pw" id="pw"></i>
+    <div slot="usage" slot-scope="item">
+      <div class="clearfix">
+        <div class="float-left">
+          <strong>{{item.value.value}}%</strong>
+        </div>
+        <div class="float-right">
+          <small class="text-muted">{{item.value.period}}</small>
+        </div>
+      </div>
+      <b-progress height={} class="progress-xs" v-model="item.value.value" :variant="variant(item.value.value)"></b-progress>
+    </div>
+    <i slot="payment" slot-scope="item" :class="item.value.icon" style="font-size:24px"></i>
+    <div slot="activity" slot-scope="item">
+      <div class="small text-muted">Last login</div>
+      <strong>{{item.value}}</strong>
+    </div>
+  </b-table>
 </template>
 
 <script>
-import CardLine1ChartExample from './dashboard/CardLine1ChartExample'
-import CardLine2ChartExample from './dashboard/CardLine2ChartExample'
-import CardLine3ChartExample from './dashboard/CardLine3ChartExample'
-import CardBarChartExample from './dashboard/CardBarChartExample'
-import MainChartExample from './dashboard/MainChartExample'
-import SocialBoxChartExample from './dashboard/SocialBoxChartExample'
-import CalloutChartExample from './dashboard/CalloutChartExample'
-import TopDash from './dashboard/mycode/TopDash'
-import BadgesDash from './dashboard/mycode/BadgesDash'
-import LeaderBoard from './dashboard/mycode/LeaderBoard'
-import ArticlesRead from './dashboard/mycode/ArticlesRead'
-import ProfileComplete from './dashboard/mycode/ProfileComplete'
-import Streak from './dashboard/mycode/Streak'
-import RecentActivity from './dashboard/mycode/RecentActivity'
-import Credits from './dashboard/mycode/Credits'
-
-
-import { Callout } from '@coreui/vue'
-import Badges from "./notifications/Badges";
-
 export default {
-  name: 'dashboard',
-  components: {
-    Badges,
-    Callout,
-    CardLine1ChartExample,
-    CardLine2ChartExample,
-    CardLine3ChartExample,
-    CardBarChartExample,
-    MainChartExample,
-    SocialBoxChartExample,
-    CalloutChartExample,
-
-    // mystuff
-    TopDash,
-    BadgesDash,
-    LeaderBoard,
-    ArticlesRead,
-    ProfileComplete,
-    Streak,
-    RecentActivity,
-    Credits
-  },
+  count: 50,
+  counter: 50,
   data: function () {
     return {
       selected: 'Month',
@@ -192,10 +139,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  /* IE fix */
-  #card-chart-01, #card-chart-02 {
-    width: 100% !important;
-  }
-</style>
