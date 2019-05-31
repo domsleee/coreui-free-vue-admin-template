@@ -11,22 +11,27 @@ export default {
       },
       {
         name: 'Details',
+        url: '/dashboard',
         icon: 'icon-cursor'
       },
       {
         name: 'Leaderboard',
+        url: '/leaderboard',
         icon: 'icon-badge'
       },
       {
         name: 'Manage Subscriptions',
+        url: '/dashboard',
         icon: 'icon-drop'
       },
       {
         name: 'Payment Details',
+        url: '/dashboard',
         icon: 'icon-pencil'
       },
       {
         name: 'Rewards',
+        url: '/dashboard',
         icon: 'icon-basket'
       }
     ];
