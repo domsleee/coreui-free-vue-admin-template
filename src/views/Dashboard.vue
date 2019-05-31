@@ -11,7 +11,7 @@
     <b-row>
       <b-col md="12">
         <b-card header="Badges">
-
+          <BadgesDash />
         </b-card>
       </b-col>
     </b-row>
@@ -297,6 +297,7 @@ import MainChartExample from './dashboard/MainChartExample'
 import SocialBoxChartExample from './dashboard/SocialBoxChartExample'
 import CalloutChartExample from './dashboard/CalloutChartExample'
 import TopDash from './dashboard/mycode/TopDash'
+import BadgesDash from './dashboard/mycode/BadgesDash'
 import ArticlesRead from './dashboard/mycode/ArticlesRead'
 import ProfileComplete from './dashboard/mycode/ProfileComplete'
 import Streak from './dashboard/mycode/Streak'
@@ -305,10 +306,12 @@ import Credits from './dashboard/mycode/Credits'
 
 
 import { Callout } from '@coreui/vue'
+import Badges from "./notifications/Badges";
 
 export default {
   name: 'dashboard',
   components: {
+    Badges,
     Callout,
     CardLine1ChartExample,
     CardLine2ChartExample,
@@ -320,6 +323,7 @@ export default {
 
     // mystuff
     TopDash,
+    BadgesDash,
     ArticlesRead,
     ProfileComplete,
     Streak,
