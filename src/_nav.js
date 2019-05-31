@@ -11,7 +11,7 @@ export default {
       },
       {
         name: 'Details',
-        url: '/dashboard',
+        url: '#',
         icon: 'icon-cursor'
       },
       {
@@ -21,17 +21,17 @@ export default {
       },
       {
         name: 'Manage Subscriptions',
-        url: '/dashboard',
+        url: '#',
         icon: 'icon-drop'
       },
       {
         name: 'Payment Details',
-        url: '/dashboard',
+        url: '#',
         icon: 'icon-pencil'
       },
       {
         name: 'Rewards',
-        url: '/dashboard',
+        url: '#',
         icon: 'icon-basket'
       }
     ];
