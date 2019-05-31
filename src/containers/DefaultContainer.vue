@@ -2,13 +2,12 @@
   <div class="app">
     <AppHeader fixed>
       <SidebarToggler class="d-lg-none" display="md" mobile />
-      <b-link class="navbar-brand" to="#">
-        <img class="navbar-brand-full" src="img/logo.png" width="140" height="53" alt="CoreUI Logo">
+      <b-link class="navbar-brand" to="#" style='width: 185px'>
+        <img class="navbar-brand-full" src="img/logo-crop.png" width="180" height="40" alt="CoreUI Logo" style='padding-left: 25px; padding-right: 5px'>
         <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
       </b-link>
       <SidebarToggler class="d-md-down-none" display="lg" />
       <b-navbar-nav class="d-md-down-none">
-        <b-nav-item class="px-3" to="/dashboard">Dashboard</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         <img src="img/dt.png" style='padding-right:25px;height:46px'/>
@@ -88,3 +87,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .d-md-down-none {
+    outline: none!important;
+  }
+</style>
