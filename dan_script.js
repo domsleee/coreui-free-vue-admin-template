@@ -240,6 +240,9 @@ function addFrame() {
     let div = document.createElement('div');
     div.id = 'boi_dropdown';
     div.style = 'bottom:60px; height:230px; width:100%; position: fixed; z-index: 500';
+    if (document.getElementById('boi_dropdown')) {
+      return;
+    }
     div.append(iframe);
 
     let button = document.createElement('button');
