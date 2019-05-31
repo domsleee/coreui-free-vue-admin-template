@@ -7,6 +7,8 @@ const EmptyContainer = () => import('@/containers/EmptyContainer')
 
 // Views
 const Dashboard = () => import('@/views/Dashboard')
+const Leaderboard = () => import('@/views/Leaderboard')
+
 const Onpage = () => import('@/views/Onpage')
 
 const Colors = () => import('@/views/theme/Colors')
@@ -88,6 +90,11 @@ export default new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'leaderboard',
+          name: 'Leaderboard',
+          component: Leaderboard
         },
         {
           path: 'theme',
