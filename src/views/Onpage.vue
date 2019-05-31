@@ -10,8 +10,6 @@
 
 
 
-
-
 import TopDash from './dashboard/mycode/TopDash'
 
 
@@ -27,7 +25,8 @@ export default {
           // something from an unknown domain, let's ignore it
           return;
       }
-      document.body.innerHTML = ":)";
+      // disable for now 
+      //document.body.innerHTML = ":)";
     });
   },
   data: function () {
