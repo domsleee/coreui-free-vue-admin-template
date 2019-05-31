@@ -5,7 +5,7 @@
         <b-col sm="6">
           <b-row>
             <b-col width='100px'>
-              <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' fluid />
+              <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' width=120 />
             </b-col>
             <b-col style='font-size: 1.3em'>
               <h3>
