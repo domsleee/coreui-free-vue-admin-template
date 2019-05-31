@@ -80,6 +80,7 @@ function createElements() {
 		articleCountPEl = document.createElement( 'p' ),
 		articlesSharedPEl = document.createElement( 'p' ),
 		creditsPEl = document.createElement( 'p' ),
+        commentsPEl = document.createElement( 'p' ),
 		divEl = document.createElement( 'div' ),
 		bodyEl = document.getElementsByTagName( 'body' )[0];
 
@@ -87,27 +88,33 @@ function createElements() {
 	articleCountPEl.setAttribute( 'class', 'devfoundry-article-count-p' );
 	articleCountPEl.appendChild( articleCountTextNode );
 	creditsPEl.setAttribute( 'class', 'devfoundry-credits-p' );
-	creditsPEl.appendChild( creditsTextNode );
+    creditsPEl.innerText = '0 Credits';
+    commentsPEl.setAttribute( 'class', 'devfoundry-comments-p' );
+    commentsPEl.innerText = 'Comments: 5';
 	articlesSharedPEl.setAttribute( 'class', 'devfoundry-articles-shared-p' );
 	articlesSharedPEl.appendChild( articlesSharedTextNode );
 	divEl.appendChild( articleCountPEl );
 	divEl.appendChild( articlesSharedPEl );
+    divEl.appendChild( commentsPEl );
 	divEl.appendChild( creditsPEl );
+
 	bodyEl.appendChild( divEl );
 
-    for (let v of [articleCountPEl, creditsPEl, articlesSharedPEl] ) {
+    for (let v of [articleCountPEl, creditsPEl, articlesSharedPEl, commentsPEl ] ) {
         console.log(v);
-        v.style = 'display:inline-block';
+        v.style = 'display:inline-block; margin-top: 5px; margin-bottom: 5px';
     }
 }
 
 function styleElements() {
 	let divEl = document.getElementsByClassName( 'devfoundry-popup-div' )[0],
 		articleCountPEl = document.getElementsByClassName( 'devfoundry-article-count-p' )[0],
-		creditsPEl = document.getElementsByClassName( 'devfoundry-credits-p' )[0];
+		creditsPEl = document.getElementsByClassName( 'devfoundry-credits-p' )[0],
+        commentsPEl = document.getElementsByClassName( 'devfoundry-comments-p' )[0],
+        sharedPEl = document.getElementsByClassName( 'devfoundry-articles-shared-p' )[0];
 
 	divEl.style.backgroundColor = 'white';
-	divEl.style.height = '60px';
+	divEl.style.height = '32px';
 	divEl.style.padding = '';
 	divEl.style.zIndex = '99999999';
 
@@ -117,11 +124,12 @@ function styleElements() {
     //divEl.style.paddingRight = '50px';
 	articleCountPEl.style.fontSize = '16px';
 	articleCountPEl.style.color = 'black';
-    articleCountPEl.style.padding = '0 20px 0 10px';
+    articleCountPEl.style.padding = '0 20px 0 80px';
+    sharedPEl.style.padding = '0 20px 0 0';
 	creditsPEl.style.fontSize = '24px';
 	creditsPEl.style.color = 'grey';
     creditsPEl.style.float = 'right';
-    creditsPEl.style.padding = '0 10px 0 0';
+    creditsPEl.style.padding = '0 80px 0 0';
 }
 
 function refreshCreditsElement() {
@@ -217,7 +225,7 @@ function init() {
     addFrame();
 }
 
-const BOTTOM_VAL = '60px';
+const BOTTOM_VAL = '32px';
 
 function addFrame() {
     let iframe = document.createElement('iframe');
@@ -244,7 +252,7 @@ function addFrame() {
     // add a nice button to toggle it
     let div = document.createElement('div');
     div.id = 'boi_dropdown';
-    div.style = 'bottom:60px; height:230px; width:100%; position: fixed; z-index: 500';
+    div.style = `bottom:${BOTTOM_VAL}; height:230px; width:100%; position: fixed; z-index: 500`;
     if (document.getElementById('boi_dropdown')) {
       return;
     }
@@ -255,7 +263,7 @@ function addFrame() {
     div.appendChild(button);
     button.onclick = () => {
         if (div.style.bottom == BOTTOM_VAL) {
-            div.style.bottom = '-160px';
+            div.style.bottom = '-180px';
         } else {
             div.style.bottom = BOTTOM_VAL
         }
