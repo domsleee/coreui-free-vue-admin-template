@@ -14,8 +14,6 @@ export default {
         icon: 'icon-cursor'
       },
     ];
-    console.log('hi');
-    console.log(process.env);
     if (process.env.NODE_ENV !== 'production' ) {
       it = it.concat(
         [

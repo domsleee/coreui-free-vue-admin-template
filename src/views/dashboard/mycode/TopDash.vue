@@ -14,8 +14,9 @@
       :value=profileProgress
       color="blue"
     >
-      Profile {{ profileProgress }}
+      <v-img src='https://fakeimg.pl/100x100/eae0d0/?retina=1' width=70 class='rounded-img' />
     </v-progress-circular>
+    (current badge)
   </div>
 </template>
 
@@ -38,3 +39,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.rounded-img {
+    border-radius:50px;
+    border: 1px solid grey;
+}
+</style>
