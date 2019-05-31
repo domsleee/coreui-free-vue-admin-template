@@ -8,6 +8,7 @@
       </b-col>
       
     </b-row>
+
     <b-row>
       <b-col md="12">
         <b-card header="Badges">
@@ -15,32 +16,21 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col md="12">
-        <b-card-group columns class="card-columns">
-          <b-card :no-body="true">
-            <Credits />
-          </b-card>
-          <b-card>
-            <Streak />
-          </b-card>
-          <b-card header="Articles Read">
-            <ArticlesRead />
-          </b-card>
-          <b-card header="Profile Complete">
-            <ProfileComplete />
-          </b-card>
-          
 
-          
-        </b-card-group>
-      </b-col>
-    </b-row>
+
 
     <b-row>
       <b-col md="12">
         <b-card header="Leaderboard">
           <LeaderBoard />
+        </b-card>
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col md="12">
+        <b-card header="Article Read">
+          <ArticlesRead />
         </b-card>
       </b-col>
     </b-row>
