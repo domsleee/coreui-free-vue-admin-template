@@ -22,7 +22,7 @@
               <br />
               <div fluid>
                 Profile competion
-                <b-progress :value="30" :max="100" show-progress animated></b-progress>
+                <b-progress :value="70" :max="100" show-progress animated></b-progress>
                 <small class="text-muted">Complete to get 100 credits.</small>
               </div>
             </v-flex>
