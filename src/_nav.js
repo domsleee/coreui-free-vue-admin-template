@@ -13,6 +13,22 @@ export default {
         name: 'Details',
         icon: 'icon-cursor'
       },
+      {
+        name: 'Leaderboard',
+        icon: 'icon-badge'
+      },
+      {
+        name: 'Manage Subscriptions',
+        icon: 'icon-drop'
+      },
+      {
+        name: 'Payment Details',
+        icon: 'icon-pencil'
+      },
+      {
+        name: 'Rewards',
+        icon: 'icon-basket'
+      }
     ];
     if (process.env.NODE_ENV !== 'production' ) {
       it = it.concat(
