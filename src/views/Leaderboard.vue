@@ -1,6 +1,8 @@
 <template>
   <div class="animated fadeIn">
-    Leada
+    <b-card>
+      <LeaderBoard />
+    </b-card>
   </div>
 </template>
 
@@ -8,12 +10,13 @@
 
 
 
+import LeaderBoard from './dashboard/mycode/LeaderBoard'
 
 
 export default {
-  name: 'dashboard',
+  name: 'leaderboard',
   components: {
-    
+    LeaderBoard
   },
   onMount: function() {
   },
