@@ -61,11 +61,7 @@
               </div>
             </b-col>
           </b-row>
-          <b-row fluid>
-            HI
-            
-          </b-row>
-          <b-row> Streak2</b-row>
+
         </b-col>
         <b-col sm="3">
           <div class="oneline" style="float: right; width: 150px;" fluid>
