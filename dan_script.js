@@ -184,9 +184,14 @@ function clickListener ( event ) {
 }
 
 function replaceAccountLogin() {
+    let els = document.getElementsByClassName('tge-dropdownmenu-menu_link');
+    if (els.length > 0) {
+        els[0].href = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/dashboard';
+    }
+    return;
 	let elem = jQuery("[data-tgev-label=my-account]");
 	if (elem) {
-		elem.attr('href', 'https://domsleee.github.io/coreui-free-vue-admin-template/#/dashboard');
+		elem.attr('href', );
 	}
 }
 
