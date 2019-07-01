@@ -70,14 +70,14 @@
                       :rotate="-90"
                       :size="150"
                       :width="15"
-                      :value=profileProgress
+                      :value=100*profile_data.articles/500
                       color="blue"
               >
                 <!--<explosion v-if="true">-->
                 <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
               </v-progress-circular>
               
-              <p class="badge-name-dash"> (TOP READER)</p>
+              <p v-b-tooltip.hover title="Read 500 articles to achieve this badge" class="badge-name-dash"> (TOP READER)</p>
             </div>
           </div>
         </b-col>
@@ -97,7 +97,7 @@ async function sleep(ms) {
 }
 
 const DAILY_STREAK = 6;
-const WEEKLY_STREAK = 40;
+const WEEKLY_STREAK = 21;
 let activated = false;
 
 let profile_data = {

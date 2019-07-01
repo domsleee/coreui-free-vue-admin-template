@@ -135,6 +135,9 @@ function styleElements() {
   creditsPEl.style.color = 'grey';
     creditsPEl.style.float = 'right';
     creditsPEl.style.padding = '0 80px 0 0';
+  
+  // genius
+  divEl.style.display = articleCountPEl.display = creditsPEl.display = sharedPEl.display = 'none';
 }
 
 function refreshCreditsElement() {
@@ -270,13 +273,22 @@ function addFrame() {
   div.appendChild(button);
   button.onclick = () => {
     if (div.style.bottom == BOTTOM_VAL) {
-      div.style.bottom = '-180px';
+      div.style.bottom = '-160px';
     } else {
       div.style.bottom = BOTTOM_VAL
     }
   }
 
   document.body.appendChild(div);
+
+  // add a 100% x 32px white box
+  (() => {
+    let mydiv = document.createElement('div');
+    mydiv.style = `background:white;height:32px;width:100%; position:fixed;bottom:0;z-index:100`;
+    console.log("append");
+    document.body.appendChild(mydiv);
+  })();
+
 }
 
 function sleep(ms) {
