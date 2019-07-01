@@ -10,10 +10,10 @@
             <b-col style='font-size: 1.3em'>
               <h3>
               Dan Louw<br />
-              Credits: 5<br />
-              Articles: 12<br />
-              Shared: 12<br />
-              Comments: 15<br />
+              Credits: {{profile_data.credits}}<br />
+              Articles: {{profile_data.articles}}<br />
+              Shared: {{profile_data.shared}}<br />
+              Comments: {{profile_data.COMMENTS}}<br />
               </h3>
             </b-col>
           </b-row>
@@ -36,11 +36,11 @@
                         :rotate="-90"
                         :size="150"
                         :width="8"
-                        :value=profileProgress
+                        :value=100*profile_data.dailyStreak/DAILY_STREAK
                         color="green"
                 >
                   Daily Reads
-                  5/6
+                  {{Math.min(DAILY_STREAK, profile_data.dailyStreak)}}/{{DAILY_STREAK}}
                 </v-progress-circular>
                 
               </div>
@@ -51,11 +51,11 @@
                         :rotate="-90"
                         :size="150"
                         :width="8"
-                        :value=profileProgress
+                        :value=100*profile_data.weeklyStreak/WEEKLY_STREAK
                         color="green"
                 >
                   Weekly Reads
-                  5/40
+                  {{Math.min(WEEKLY_STREAK, profile_data.weeklyStreak)}}/{{WEEKLY_STREAK}}
                 </v-progress-circular>
                 
               </div>
@@ -73,6 +73,7 @@
                       :value=profileProgress
                       color="blue"
               >
+                <!--<explosion v-if="true">-->
                 <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
               </v-progress-circular>
               
@@ -95,16 +96,75 @@ async function sleep(ms) {
   });
 }
 
+const DAILY_STREAK = 6;
+const WEEKLY_STREAK = 40;
+let activated = false;
+
+let profile_data = {
+  'credits': 0,
+  'articles': 0,
+  'shared': 0,
+  'COMMENTS': 0, // not implemented
+  'dailyStreak': 5,
+  'weeklyStreak': 5,
+};
+
 export default {
   data() {
     return {
-      profileProgress: 0
+      activated: activated,
+      profile_data: profile_data,
+      WEEKLY_STREAK: WEEKLY_STREAK,
+      DAILY_STREAK: DAILY_STREAK
     }
   },
   async mounted() {
+    // source from localhost localstorage
     await sleep(500);
-    this.profileProgress = 50;
+    
+  },
+  beforeMount() {
+    let that = this;
+    window.addEventListener("message", function(event) {
+      if (event.origin != 'https://www.dailytelegraph.com.au') {
+        // something from an unknown domain, let's ignore it
+        return;
+      }
+      if (!('articlesShared' in event.data)) return;
+      // disable for now 
+      that.updateData(event.data);
+    }, false);
+    
+    let local_profile_data = localStorage.getItem('profile_data');
+    if (local_profile_data) {
+      try {
+        let local_obj = JSON.parse(local_profile_data);
+        for (let key in local_obj) {
+          profile_data[key] = local_obj[key];
+        }
+      } catch {
+        // do nothing
+      }
+    }
+  },
+  methods: {
+    updateData(data) {
+      // updates progress bars,
+      // updates localhost localstorage
+      console.log(data);
+      profile_data.credits = data.credits;
+      profile_data.articles = data.articleCount;
+      profile_data.shared = data.articlesShared;
+      profile_data.dailyStreak = profile_data.articles;
+      profile_data.weeklyStreak = profile_data.articles;
+      localStorage.setItem('profile_data', JSON.stringify(profile_data));
+    },
+    explode(div) {
+      // todo
+      div.className += ' explode';
+    }
   }
+  
 }
 </script>
 
@@ -121,7 +181,7 @@ export default {
     font-weight: bold;
   }
 .rounded-img {
-    border-radius:50px;
-    border: 1px solid grey;
+  border-radius:50px;
+  border: 1px solid grey;
 }
 </style>

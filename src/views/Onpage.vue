@@ -7,30 +7,12 @@
 </template>
 
 <script>
-
-
-
 import TopDash from './dashboard/mycode/TopDash'
-
 
 export default {
   name: 'dashboard',
   components: {
     TopDash
-    
-  },
-  onMount: function() {
-    window.addEventListener("message", function(event) {
-      console.log("HEAR THEE");
-      console.log(event);
-      if (event.origin != 'https://www.dailytelegraph.com.au') {
-          // something from an unknown domain, let's ignore it
-          return;
-      }
-      // disable for now 
-      console.log(event);
-      //document.body.innerHTML = ":)";
-    });
   },
   data: function () {
     return {};

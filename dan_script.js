@@ -10,6 +10,7 @@
 
 //const IFRAME_SRC = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/onpage';
 const IFRAME_SRC = 'https://localhost:8081/#/onpage';
+let iframe_loaded = false;
 
 function getCredits() {
   let credits = JSON.parse( localStorage.getItem( 'devfoundry_credits' ) );
@@ -71,6 +72,7 @@ function addCredits( creditsToAdd ) {
   let credits = getCredits();
   credits = Number( credits ) + Number( creditsToAdd );
   localStorage.setItem( 'devfoundry_credits', JSON.stringify( credits ) );
+  UpdateIframe();
 }
 
 function createElements() {
@@ -225,7 +227,9 @@ function init() {
   styleElements();
 
   addClickListener();
-    addFrame();
+  addFrame();
+  UpdateIframe();
+  
 }
 
 const BOTTOM_VAL = '32px';
@@ -248,8 +252,6 @@ function addFrame() {
   iframe.sandbox ="allow-same-origin allow-scripts allow-popups allow-forms";
 
   //document.body.appendChild(iframe);
-  waitForMyBoi(iframe);
-
 
   // add a nice button to toggle it
   let div = document.createElement('div');
@@ -257,6 +259,9 @@ function addFrame() {
   div.style = `bottom:${BOTTOM_VAL}; height:230px; width:100%; position: fixed; z-index: 500`;
   if (document.getElementById('boi_dropdown')) {
     return;
+  }
+  iframe.onload = function() {
+    iframe_loaded = true;
   }
   div.append(iframe);
 
@@ -274,23 +279,30 @@ function addFrame() {
   document.body.appendChild(div);
 }
 
-// non-blocking
-function waitForMyBoi(iframe) {
+function sleep(ms) {
   return new Promise(resolve => {
-    iframe.onload = () => {
-      let myframe = window.frames.itsyaboi;
-      console.log("ONLOAD");
-      myframe.postMessage('yikes!');
-      setInterval(() => {
-        myframe.postMessage('yikeszzz');
-      }, 2000);
-    };
+    setTimeout(() => resolve(), ms);
   });
+}
+
+async function UpdateIframe() {
+  let myframe = window.frames.itsyaboi;
+
+  while (!iframe_loaded) {
+    console.log("iframe not loaded! waiting...");
+    await sleep(10);
+  }
+  console.log("now updating...");
+
+  myframe.postMessage({
+    'credits': getCredits(),
+    'articleCount': getArticleCount(),
+    'articlesShared': getArticlesShared(),
+  }, '*');
 }
 
 init();
 
 window.onload = function() {
-  init();
-    // ahahahhhhahahaahhahahahhah this script
+  //init();
 };
