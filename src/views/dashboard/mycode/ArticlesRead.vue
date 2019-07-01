@@ -4,22 +4,39 @@ import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips'
 
 export default {
   extends: Bar,
+  methods: {
+    getCategories: function() {
+      let str = localStorage.getItem('profile_data');
+      if (!str) return {};
+      try {
+        let obj = JSON.parse(str);
+        return obj.categories ? obj.categories : {};
+      } catch {
+        return {};
+      }
+    }
+  },
   mounted () {
-    // Overwriting base render method with actual data.
+    let categories = this.getCategories();
+    console.log(categories);
+    let values = [], labels = [];
+    for (let key in categories) {
+      labels.push(key);
+      values.push(categories[key]);
+    }
+
     this.renderChart(
       {
-        labels: ['News', 'Sport', 'Entertainment', 'Opinion'],
-        datasets: [
-          {
-            label: 'Articles Read',
-            backgroundColor: '#f87979',
-            data: [40, 20, 12, 39, 10, 40, 39, 80]
-          }
-        ]
+        labels: labels,
+        datasets: [{
+          label: 'Articles read',
+          backgroundColor: '#f87979',
+          data: values
+        }]
       },
       {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         tooltips: {
           enabled: false,
           custom: CustomTooltips,

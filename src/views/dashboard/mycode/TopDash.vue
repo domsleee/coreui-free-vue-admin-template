@@ -77,7 +77,7 @@
                 <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
               </v-progress-circular>
               
-              <p v-b-tooltip.hover title="Read 500 articles to achieve this badge" class="badge-name-dash"> (TOP READER)</p>
+              <p v-b-tooltip.hover v-bind:title="top_reader_text" class="badge-name-dash"> (TOP READER)</p>
             </div>
           </div>
         </b-col>
@@ -116,6 +116,11 @@ export default {
       profile_data: profile_data,
       WEEKLY_STREAK: WEEKLY_STREAK,
       DAILY_STREAK: DAILY_STREAK
+    }
+  },
+  computed: {
+    'top_reader_text': function() {
+      return `Read 500 articles to achieve this badge (current: ${profile_data.articles})`
     }
   },
   async mounted() {
@@ -157,6 +162,7 @@ export default {
       profile_data.shared = data.articlesShared;
       profile_data.dailyStreak = profile_data.articles;
       profile_data.weeklyStreak = profile_data.articles;
+      profile_data.categories = JSON.parse(data.categories);
       localStorage.setItem('profile_data', JSON.stringify(profile_data));
     },
     explode(div) {

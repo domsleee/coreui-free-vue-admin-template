@@ -30,7 +30,7 @@
     <b-row>
       <b-col md="12">
         <b-card header="Article Read">
-          <ArticlesRead />
+          <ArticlesRead style="height:500px" />
         </b-card>
       </b-col>
     </b-row>

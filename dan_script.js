@@ -211,6 +211,28 @@ function replaceAccountLogin() {
   }
 }
 
+function addCategory(url) {
+  console.log(url);
+  let category = url.split('dailytelegraph.com.au/')[1].split('/')[0];
+  let categoryCount = getCategories();
+  console.log(`ADDING CATEGORY ${category}`);
+  categoryCount[category] = category in categoryCount ? categoryCount[category] + 1 : 1;
+  localStorage.setItem( 'devfoundry_categories', JSON.stringify(categoryCount) );
+}
+
+function getCategories() {
+  let str = localStorage.getItem( 'devfoundry_categories' );
+  let categoryCount = {};
+  try {
+    if (str) {
+      categoryCount = JSON.parse(str);
+    }
+  } catch {
+    // empty
+  }
+  return categoryCount;
+}
+
 function init() {
   replaceAccountLogin();
 
@@ -220,6 +242,7 @@ function init() {
     thisIsAnArticlePage( currentUrl ) &&
     notViewedBefore( currentUrl )
   ) {
+    addCategory(currentUrl);
     incrementArticleCount();
     addCredits( 10 );
   }
@@ -310,6 +333,7 @@ async function UpdateIframe() {
     'credits': getCredits(),
     'articleCount': getArticleCount(),
     'articlesShared': getArticlesShared(),
+    'categories': localStorage.getItem( 'devfoundry_categories' )
   }, '*');
 }
 
