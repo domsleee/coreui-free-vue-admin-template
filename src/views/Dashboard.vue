@@ -28,9 +28,14 @@
     </b-row>
 
     <b-row>
-      <b-col md="12">
-        <b-card header="Article Read">
-          <ArticlesRead style="height:500px" />
+      <b-col md="4">
+        <b-card header="Articles Read by Category">
+          <ArticlesReadDoughnut />
+        </b-card>
+      </b-col>
+      <b-col md="8">
+        <b-card header="Articles Read by Month">
+          <ArticlesReadByMonth style="height:490px" />
         </b-card>
       </b-col>
     </b-row>
@@ -49,6 +54,9 @@ import TopDash from './dashboard/mycode/TopDash'
 import BadgesDash from './dashboard/mycode/BadgesDash'
 import LeaderBoard from './dashboard/mycode/LeaderBoard'
 import ArticlesRead from './dashboard/mycode/ArticlesRead'
+import ArticlesReadDoughnut from './dashboard/mycode/ArticlesReadDoughnut'
+import ArticlesReadByMonth from './dashboard/mycode/ArticlesReadByMonth'
+
 import ProfileComplete from './dashboard/mycode/ProfileComplete'
 import Streak from './dashboard/mycode/Streak'
 import RecentActivity from './dashboard/mycode/RecentActivity'
@@ -76,6 +84,8 @@ export default {
     BadgesDash,
     LeaderBoard,
     ArticlesRead,
+    ArticlesReadDoughnut,
+    ArticlesReadByMonth,
     ProfileComplete,
     Streak,
     RecentActivity,
