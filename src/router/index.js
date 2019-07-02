@@ -97,6 +97,31 @@ export default new Router({
           component: Leaderboard
         },
         {
+          path: 'details',
+          name: 'Details',
+          component: Leaderboard
+        },
+        {
+          path: 'subscriptions',
+          name: 'Manage Subscriptions',
+          component: Leaderboard
+        },
+        {
+          path: 'payment',
+          name: 'Payment Details',
+          component: Leaderboard
+        },
+        {
+          path: 'subscriptions',
+          name: 'subscription',
+          component: Leaderboard
+        },
+        {
+          path: 'rewards',
+          name: 'Rewards',
+          component: Leaderboard
+        },
+        {
           path: 'theme',
           redirect: '/theme/colors',
           name: 'Theme',

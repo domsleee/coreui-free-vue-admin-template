@@ -21,7 +21,7 @@
             <v-flex>
               <br />
               <div fluid>
-                Profile competion
+                Profile completion
                 <b-progress :value="70" :max="100" show-progress animated></b-progress>
                 <small class="text-muted">Complete to get 100 credits.</small>
               </div>
@@ -139,18 +139,7 @@ export default {
       // disable for now 
       that.updateData(event.data);
     }, false);
-    
-    let local_profile_data = localStorage.getItem('profile_data');
-    if (local_profile_data) {
-      try {
-        let local_obj = JSON.parse(local_profile_data);
-        for (let key in local_obj) {
-          profile_data[key] = local_obj[key];
-        }
-      } catch {
-        // do nothing
-      }
-    }
+    this.getData();
   },
   methods: {
     updateData(data) {
@@ -164,6 +153,19 @@ export default {
       profile_data.weeklyStreak = profile_data.articles;
       profile_data.categories = JSON.parse(data.categories);
       localStorage.setItem('profile_data', JSON.stringify(profile_data));
+    },
+    getData() {
+      let local_profile_data = localStorage.getItem('profile_data');
+      if (local_profile_data) {
+        try {
+          let local_obj = JSON.parse(local_profile_data);
+          for (let key in local_obj) {
+            profile_data[key] = local_obj[key];
+          }
+        } catch {
+          // do nothing
+        }
+      }
     },
     explode(div) {
       // todo

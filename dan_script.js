@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 //const IFRAME_SRC = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/onpage';
-const IFRAME_SRC = 'https://localhost:8081/#/onpage';
+const IFRAME_SRC = 'https://localhost:8080/#/onpage';
 let iframe_loaded = false;
 
 function getCredits() {
