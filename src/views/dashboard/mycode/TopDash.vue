@@ -8,13 +8,22 @@
               <b-img src='https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=11' width=120 />
             </b-col>
             <b-col style='font-size: 1.3em'>
-              <h3>
-              Dan Louw<br />
-              Credits: {{profile_data.credits}}<br />
+              <h3 style='margin-bottom:0;padding-bottom:0'>
+              <span style='color:grey;font-weight:700'>Dan Louw</span><br />
+              </h3>
+              <h4>
+              Credits: 
+              <span class="iCountUp" v-bind:style=count_up_style>
+                <ICountUp
+                  :options="count_up_options"
+                  :endVal="count_up_value"
+                  @ready="creditsReady"
+                />
+              </span><br />
               Articles: {{profile_data.articles}}<br />
               Shared: {{profile_data.shared}}<br />
               Comments: {{profile_data.COMMENTS}}<br />
-              </h3>
+              </h4>
             </b-col>
           </b-row>
           <b-row>
@@ -90,15 +99,37 @@
 </template>
 
 <script>
+import ICountUp from 'vue-countup-v2';
+
 async function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(()=> resolve(), ms);
   });
 }
 
+const easingFn = function (t, b, c, d) {
+  var ts = (t /= d) * t;
+  var tc = ts * t;
+  return b + c * (tc * ts + -5 * ts * ts + 10 * tc + -10 * ts + 5 * t);
+}
+
 const DAILY_STREAK = 6;
 const WEEKLY_STREAK = 21;
-let activated = false;
+let count_up_options = {
+  duration: 0.001,
+  useEasing: true,
+  easingFn: easingFn,
+  useGrouping: true,
+  separator: ',',
+  decimal: '.',
+  prefix: '',
+  suffix: ''
+};
+const COUNT_UP_DURATION = 2.5;
+const LOADING_STYLE = {color:'green', 'font-weight': 700};
+const LOADING_DELAY = 300; // delay when new data comes in
+const LOADED_STYLE = {'font-size':'1em'};
+const LOADED_DELAY = 50;  // delay after animation finishes
 
 let profile_data = {
   'credits': 0,
@@ -110,18 +141,25 @@ let profile_data = {
 };
 
 export default {
+  components: {
+    ICountUp
+  },
   data() {
     return {
-      activated: activated,
+      loaded_timeout: null,
+      loading_timeout: null,
       profile_data: profile_data,
       WEEKLY_STREAK: WEEKLY_STREAK,
-      DAILY_STREAK: DAILY_STREAK
+      DAILY_STREAK: DAILY_STREAK,
+      count_up_options: count_up_options,
+      count_up_value: 0,
+      count_up_style: LOADED_STYLE
     }
   },
   computed: {
     'top_reader_text': function() {
       return `Read 500 articles to achieve this badge (current: ${profile_data.articles})`
-    }
+    },
   },
   async mounted() {
     // source from localhost localstorage
@@ -142,15 +180,33 @@ export default {
     this.getData();
   },
   methods: {
+    creditsReady: function(instance, countUp) {
+      instance.options.duration = COUNT_UP_DURATION;
+      clearTimeout(this.loaded_timeout);
+      this.loaded_timeout = setTimeout(() => {
+        console.log("SET LOADED STYLE");
+        this.count_up_style = LOADED_STYLE;
+      }, LOADED_DELAY);
+    },
     updateData(data) {
       // updates progress bars,
       // updates localhost localstorage
-      console.log(data);
       profile_data.credits = data.credits;
       profile_data.articles = data.articleCount;
       profile_data.shared = data.articlesShared;
       profile_data.dailyStreak = profile_data.articles;
       profile_data.weeklyStreak = profile_data.articles;
+      let that = this;
+      clearTimeout(this.loading_timeout);
+      clearTimeout(this.loaded_timeout);
+      this.loading_timeout = setTimeout(() => {
+        if (profile_data.credits !== that.count_up_value) {
+          console.log("SET LOADING STYLE");
+          clearTimeout(that.loaded_timeout);
+          that.count_up_value = profile_data.credits;
+          that.count_up_style = LOADING_STYLE;
+        }
+      }, LOADING_DELAY);
       profile_data.categories = JSON.parse(data.categories);
       localStorage.setItem('profile_data', JSON.stringify(profile_data));
     },
@@ -162,6 +218,7 @@ export default {
           for (let key in local_obj) {
             profile_data[key] = local_obj[key];
           }
+          this.count_up_value = profile_data.credits;
         } catch {
           // do nothing
         }

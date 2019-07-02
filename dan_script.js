@@ -10,6 +10,8 @@
 
 //const IFRAME_SRC = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/onpage';
 const IFRAME_SRC = 'https://localhost:8080/#/onpage';
+const ARTICLE_READ_CREDITS = 15;
+const ARTICLE_SHARED_CREDITS = 100;
 let iframe_loaded = false;
 
 function getCredits() {
@@ -190,7 +192,7 @@ function clickListener ( event ) {
     'Twitter' === event.target.title
   ) {
     incrementArticlesShared();
-    addCredits( 100 );
+    addCredits( ARTICLE_SHARED_CREDITS );
 
     refreshCreditsElement();
     refreshArticlesSharedElement();
@@ -244,7 +246,7 @@ function init() {
   ) {
     addCategory(currentUrl);
     incrementArticleCount();
-    addCredits( 10 );
+    addCredits( ARTICLE_READ_CREDITS );
   }
 
   addToPagesViewed( currentUrl );
