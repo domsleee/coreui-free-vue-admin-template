@@ -79,14 +79,14 @@
                       :rotate="-90"
                       :size="150"
                       :width="15"
-                      :value=100*profile_data.articles/500
+                      :value=100*profile_data.articles/TOP_READER_COUNT
                       color="blue"
               >
                 <!--<explosion v-if="true">-->
                 <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=110 class='rounded-img' />
               </v-progress-circular>
               
-              <p v-b-tooltip.hover v-bind:title="top_reader_text" class="badge-name-dash"> (TOP READER)</p>
+              <p v-b-tooltip.hover v-bind:title="top_reader_text" class="badge-name-dash">(TOP READER)</p>
             </div>
           </div>
         </b-col>
@@ -153,12 +153,13 @@ export default {
       DAILY_STREAK: DAILY_STREAK,
       count_up_options: count_up_options,
       count_up_value: 0,
-      count_up_style: LOADED_STYLE
+      count_up_style: LOADED_STYLE,
+      TOP_READER_COUNT: 30
     }
   },
   computed: {
     'top_reader_text': function() {
-      return `Read 500 articles to achieve this badge (current: ${profile_data.articles})`
+      return `Read ${this.TOP_READER_CT} articles to achieve this badge (current: ${profile_data.articles})`
     },
   },
   async mounted() {
