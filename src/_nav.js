@@ -11,7 +11,7 @@ export default {
       },
       {
         name: 'Details',
-        url: '#',
+        url: '/details',
         icon: 'icon-cursor'
       },
       {
@@ -21,21 +21,21 @@ export default {
       },
       {
         name: 'Manage Subscriptions',
-        url: '#',
+        url: '/subscriptions',
         icon: 'icon-drop'
       },
       {
         name: 'Payment Details',
-        url: '#',
+        url: '/payment',
         icon: 'icon-pencil'
       },
       {
         name: 'Rewards',
-        url: '#',
+        url: '/rewards',
         icon: 'icon-basket'
       }
     ];
-    if (process.env.NODE_ENV !== 'production' ) {
+    if (false && process.env.NODE_ENV !== 'production' ) {
       it = it.concat(
         [
           {
