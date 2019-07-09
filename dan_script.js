@@ -9,7 +9,8 @@
 // ==/UserScript==
 
 //const IFRAME_SRC = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/onpage';
-const IFRAME_SRC = 'https://localhost:8080/#/onpage';
+const PROFILE_SRC = 'https://localhost:8081/#/';
+const IFRAME_SRC = 'https://localhost:8081/#/onpage';
 const ARTICLE_READ_CREDITS = 15;
 const ARTICLE_SHARED_CREDITS = 100;
 let iframe_loaded = false;
@@ -204,7 +205,7 @@ function clickListener ( event ) {
 function replaceAccountLogin() {
     let els = document.getElementsByClassName('tge-dropdownmenu-menu_link');
     if (els.length > 0) {
-        els[0].href = 'https://domsleee.github.io/coreui-free-vue-admin-template/#/dashboard';
+        els[0].href = PROFILE_SRC;
     }
     return;
   let elem = jQuery("[data-tgev-label=my-account]");

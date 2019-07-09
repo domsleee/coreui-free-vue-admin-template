@@ -43,7 +43,7 @@
               <div>
                 <v-progress-circular
                         :rotate="-90"
-                        :size="150"
+                        :size="110"
                         :width="8"
                         :value=100*profile_data.dailyStreak/DAILY_STREAK
                         color="green"
@@ -58,7 +58,7 @@
               <div>
                 <v-progress-circular
                         :rotate="-90"
-                        :size="150"
+                        :size="110"
                         :width="8"
                         :value=100*profile_data.weeklyStreak/WEEKLY_STREAK
                         color="green"
@@ -159,7 +159,7 @@ export default {
   },
   computed: {
     'top_reader_text': function() {
-      return `Read ${this.TOP_READER_CT} articles to achieve this badge (current: ${profile_data.articles})`
+      return `Read ${this.TOP_READER_COUNT} articles to achieve this badge (current: ${profile_data.articles})`
     },
   },
   async mounted() {

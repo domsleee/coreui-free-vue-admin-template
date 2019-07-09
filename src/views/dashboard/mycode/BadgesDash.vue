@@ -6,7 +6,7 @@
               :rotate="-90"
               :size="100"
               :width="15"
-              :value=100*profile_data.articles/TOP_READER_COUNT
+              :value=100*profile_data.articles/TOP_READER_CT
               color="blue"
       >
         <v-img src='https://png.pngtree.com/element_origin_min_pic/17/04/12/c5490bc7210a7eb88f22804682570e9b.jpg' width=70 class='rounded-img' />
@@ -45,7 +45,7 @@
               :rotate="-90"
               :size="100"
               :width="15"
-              :value=100*profile_data.shared/SUPER_SHARER
+              :value=super_sharer_perc
               color="blue"
       >
         <v-img src='https://www.redwolf.in/image/catalog/badges/khaleesi-daenerys-taragryen-game-of-thrones-badge-india.jpg' width=80 class='rounded-img' />
@@ -58,7 +58,7 @@
               :rotate="-90"
               :size="100"
               :width="15"
-              :value=100*profile_data.shared/GOSSIP_CT
+              :value=gossip_perc
               color="blue"
       >
         <v-img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI-tJrMFYWWngI0I525ZeWCOeM2hA42cSxmedi8aW5eC-U88vnNA' width=80 class='rounded-img' />
@@ -76,7 +76,7 @@
       >
         <v-img src='https://www.redwolf.in/image/catalog/badges/crown-game-of-thrones-badge-india.jpg' width=80 class='rounded-img' />
       </v-progress-circular>
-      <p v-b-tooltip.hover v-bind:title="the_loyal_text" class="badge-name"> (THE LOYAL)</p>
+      <p v-b-tooltip.hover title="placeholder" class="badge-name"> (THE LOYAL)</p>
     </div>
 
     <div class="oneline">
@@ -89,7 +89,7 @@
       >
         <v-img src='https://cdn0.iconfinder.com/data/icons/smart-technology-rounded-volume-1-1/1000/gameplay_sharing-512.png' width=70 class='rounded-img' />
       </v-progress-circular>
-      <p class="badge-name"> (SQUARE EYES)</p>
+      <p v-b-tooltip.hover title="placeholder" class="badge-name"> (SQUARE EYES)</p>
     </div>
 
     <div class="oneline">
@@ -102,13 +102,12 @@
       >
         <v-img src='https://current-students.blogs.latrobe.edu.au/wp-content/uploads/sites/9/2017/02/mission-impossible-library.jpg' width=60 class='rounded-img' />
       </v-progress-circular>
-      <p class="badge-name"> (MYSTERY)</p>
+      <p v-b-tooltip.hover title="placeholder" class="badge-name"> (MYSTERY)</p>
     </div>
   </div>
 </template>
 
 <script>
-require('./explosion.scss');
 async function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(()=> resolve(), ms);
@@ -198,6 +197,12 @@ export default {
     },
     'news_perc': function() {
       return 100*this.getCat('news')/this.NEWS_CT;
+    },
+    'gossip_perc': function() {
+      return 100*profile_data.COMMENTS/this.GOSSIP_CT;
+    },
+    'super_sharer_perc': function() {
+      return 100*profile_data.shared/this.SUPER_SHARER_CT;
     }
   }
 }
